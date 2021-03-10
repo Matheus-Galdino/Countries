@@ -1,7 +1,6 @@
 # countries
 
 ##Live
-```
 https://countriess.netlify.app/#/
 
 ## Project setup
