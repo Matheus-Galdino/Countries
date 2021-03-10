@@ -1,0 +1,24 @@
+$default-padding: 3rem;
+$default-box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.15);
+
+$mobile-breakpoint: 375px;
+$desktop-breakpoint: 1440px;
+
+$darkModeBg: #202c37;
+$darkModeElements: #2b3945;
+
+$lightModeBg: #fafafa;
+$lightModeText: #111517;
+$lightModeInput: #858585;
+
+$white: #ffffff;
+
+@media screen and (min-width: $desktop-breakpoint) {
+  $default-padding: 10rem;
+
+  nav,
+  .home,
+  .details {
+    padding: 3rem $default-padding !important;
+  }
+}

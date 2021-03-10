@@ -1,29 +1,68 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div :class="{ 'dark-theme': darkMode }">
+    <Nav />
+    <router-view />
   </div>
-  <router-view />
 </template>
 
+<script>
+import { mapMutations } from "vuex";
+import Nav from "./components/Nav";
+
+export default {
+  name: "App",
+  components: {
+    Nav,
+  },
+  methods: {
+    ...mapMutations(["setDarkMode"]),
+  },
+  computed: {
+    darkMode() {
+      return this.$store.getters.getDarkMode;
+    },
+  },
+  async beforeMount() {   
+    await this.$store.dispatch("setCountries");
+  },
+};
+</script>
+
+
 <style lang="scss">
+@import "./styles/variables.scss";
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
+  > div {
+    * {
+      color: $lightModeText;
+    }
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+    background: $lightModeBg;
 
-    &.router-link-exact-active {
-      color: #42b983;
+    .input-container {
+      color: $lightModeText;
+    }
+
+    &.dark-theme {
+      background: $darkModeBg;
+
+      * {
+        color: $white;
+      }
+
+      .input-container {
+        color: $white;
+        background: $darkModeElements;
+
+        select option {
+          color: $white;
+          background: $darkModeElements;
+        }
+      }
     }
   }
 }
